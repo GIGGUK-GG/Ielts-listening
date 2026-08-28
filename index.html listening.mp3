@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>IELTS Listening Test</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f1f5f9;
+    color: #1e293b;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    background: #1e3a8a;
+    color: white;
+    padding: 15px 25px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
+#timer {
+    background: #dc2626;
+    padding: 8px 18px;
+    border-radius: 7px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* =========================
+   START SCREEN
+========================= */
+
+#startScreen {
+
+    max-width: 700px;
+    margin: 80px auto;
+
+    background: white;
+
+    padding: 40px;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+#startScreen h2 {
+    color: #1e3a8a;
+}
+
+#startScreen p {
+    color: #475569;
+}
+
+.start-warning {
+
+    background: #fef3c7;
+
+    border-left: 5px solid #f59e0b;
+
+    padding: 15px;
+
+    text-align: left;
+
+    margin: 25px 0;
+}
+
+#startButton {
+
+    background: #16a34a;
+
+    color: white;
+
+    border: none;
+
+    padding: 15px 40px;
+
+    border-radius: 7px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+#startButton:hover {
+    background: #15803d;
+}
+
+/* =========================
+   EXAM
+========================= */
+
+#examContainer {
+    display: none;
+
+    max-width: 1000px;
+
+    margin: 30px auto;
+
+    padding: 0 20px;
+}
+
+.section {
+
+    background: white;
+
+    padding: 30px;
+
+    margin-bottom: 25px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.section h2 {
+
+    color: #1e3a8a;
+
+    border-bottom: 2px solid #dbeafe;
+
+    padding-bottom: 10px;
+}
+
+.instructions {
+
+    background: #eff6ff;
+
+    padding: 15px;
+
+    border-left: 5px solid #2563eb;
+
+    margin-bottom: 25px;
+}
+
+/* =========================
+   QUESTIONS
+========================= */
+
+.question {
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    padding: 18px;
+
+    margin-bottom: 18px;
+}
+
+.question-number {
+
+    font-weight: bold;
+
+    color: #1e3a8a;
+}
+
+.question-text {
+
+    font-weight: bold;
+
+    margin: 7px 0 15px;
+}
+
+.answer-input {
+
+    width: 250px;
+
+    max-width: 100%;
+
+    padding: 9px;
+
+    border: none;
+
+    border-bottom: 2px solid #64748b;
+
+    outline: none;
+
+    font-size: 16px;
+}
+
+.answer-input:focus {
+
+    border-bottom-color: #2563eb;
+}
+
+/* =========================
+   MULTIPLE CHOICE
+========================= */
+
+.option {
+
+    display: block;
+
+    padding: 9px;
+
+    margin: 5px 0;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+.option:hover {
+    background: #eff6ff;
+}
+
+.option input {
+    margin-right: 10px;
+}
+
+/* =========================
+   SUBMIT
+========================= */
+
+.submit-container {
+
+    text-align: center;
+
+    margin: 30px 0;
+}
+
+#submitButton {
+
+    background: #16a34a;
+
+    color: white;
+
+    border: none;
+
+    padding: 15px 45px;
+
+    border-radius: 8px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+#submitButton:hover {
+    background: #15803d;
+}
+
+/* =========================
+   RESULTS
+========================= */
+
+#result {
+
+    display: none;
+
+    max-width: 1000px;
+
+    margin: 30px auto;
+
+    padding: 30px 20px;
+}
+
+.score-box {
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+
+    margin-bottom: 25px;
+}
+
+.score-box h2 {
+
+    color: #1e3a8a;
+
+    font-size: 30px;
+}
+
+.review-item {
+
+    background: white;
+
+    padding: 18px;
+
+    margin-bottom: 12px;
+
+    border-radius: 8px;
+
+    border-left: 5px solid;
+}
+
+.correct {
+
+    background: #dcfce7;
+
+    border-color: #16a34a;
+}
+
+.wrong {
+
+    background: #fee2e2;
+
+    border-color: #dc2626;
+}
+
+.unanswered {
+
+    background: #fef3c7;
+
+    border-color: #d97706;
+}
+
+.correct-answer {
+
+    color: #15803d;
+
+    font-weight: bold;
+}
+
+.your-answer {
+
+    font-weight: bold;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width: 700px) {
+
+    .header-content {
+
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+    header h1 {
+
+        text-align: center;
+
+        font-size: 18px;
+    }
+
+    #timer {
+
+        font-size: 18px;
+    }
+
+    .section {
+
+        padding: 20px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <div class="header-content">
+
+        <h1>IELTS Listening Test</h1>
+
+        <div id="timer">
+            15:00
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     START SCREEN
+===================================================== -->
+
+<div id="startScreen">
+
+    <h2>IELTS Listening Examination</h2>
+
+    <p>
+        You have <strong>15 minutes</strong> to complete this test.
+    </p>
+
+    <div class="start-warning">
+
+        <strong>Important:</strong>
+
+        <ul>
+
+            <li>The audio will begin when you start the test.</li>
+
+            <li>You cannot pause the audio.</li>
+
+            <li>You cannot rewind or fast-forward.</li>
+
+            <li>You cannot change the playback speed.</li>
+
+            <li>The audio controls are disabled.</li>
+
+            <li>The test will automatically submit when the timer reaches zero.</li>
+
+        </ul>
+
+    </div>
+
+
+    <button id="startButton" onclick="startTest()">
+
+        Start Listening Test
+
+    </button>
+
+</div>
+
+
+
+<!-- =====================================================
+     AUDIO
+===================================================== -->
+
+<!--
+
+IMPORTANT:
+
+Put your audio file in the SAME folder as this HTML file.
+
+Example:
+
+ielts-listening-test/
+    index.html
+    listening.mp3
+
+If your audio has another name, change "listening.mp3"
+below to your actual filename.
+
+-->
+
+<audio
+    id="examAudio"
+    src="listening.mp3"
+    preload="auto">
+</audio>
+
+
+
+<!-- =====================================================
+     EXAM
+===================================================== -->
+
+<div id="examContainer">
+
+
+<!-- =====================================================
+     PART 1
+===================================================== -->
+
+<div class="section">
+
+    <h2>PART 1</h2>
+
+    <div class="instructions">
+
+        <strong>Questions 1–5</strong>
+
+        <p>
+            Complete the form below.
+        </p>
+
+        <p>
+            Write <strong>ONE WORD AND/OR A NUMBER</strong>
+            in each gap.
+        </p>
+
+    </div>
+
+
+    <h3>Customer Details Form</h3>
+
+
+    <!-- Q1 -->
+
+    <div class="question">
+
+        <div class="question-number">
+            Question 1
+        </div>
+
+        <div class="question-text">
+            Customer name: Greening
+        </div>
+
+        <input
+            type="text"
+            class="answer-input"
+            name="q1"
+            autocomplete="off">
+
+    </div>
+
+
+    <!-- Q2 -->
+
+    <div class="question">
+
+        <div class="question-number">
+            Question 2
+        </div>
+
+        <div class="question-text">
+            Address:
+            <input
+                type="text"
+                class="answer-input"
+                name="q2"
+                autocomplete="off">
+            , York Terrace
+        </div>
+
+    </div>
+
+
+    <!-- Q3 -->
+
+    <div class="question">
+
+        <div class="question-number">
+            Question 3
+        </div>
+
+        <div class="question-text">
+            Delivery address: No. 5, York
+            <input
+                type="text"
+                class="answer-input"
+                name="q3"
+                autocomplete="off">
+        </div>
+
+    </div>
+
+
+    <!-- Q4 -->
+
+    <div class="question">
+
+        <div class="question-number">
+            Question 4
+        </div>
+
+        <div class="question-text">
+            Payment method:
+            <input
+                type="text"
+                class="answer-input"
+                name="q4"
+                autocomplete="off">
+            in advance
+        </div>
+
+    </div>
+
+
+    <!-- Q5 -->
+
+    <div class="question">
+
+        <div class="question-number">
+            Question 5
+        </div>
+
+        <div class="question-text">
+            Reason for discount:
+            address within the
+            <input
+                type="text"
+                class="answer-input"
+                name="q5"
+                autocomplete="off">
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     QUESTIONS 6-10
+===================================================== -->
+
+<div class="section">
+
+    <div class="instructions">
+
+        <strong>Questions 6–10</strong>
+
+        <p>
+            Complete the table below.
+        </p>
+
+        <p>
+            Write <strong>ONE WORD AND/OR A NUMBER</strong>
+            in each gap.
+        </p>
+
+    </div>
+
+
+    <h3>Customer Order Items</h3>
+
+
+    <!-- Q6 -->
+
+    <div class="question">
+
+        <div class="question-number">
+            Question 6
+        </div>
+
+        <div class="question-text">
+
+            Desk lamp:
+            <br>
+            - 
+            <input
+                type="text"
+                class="answer-input"
+                name="q6"
+                autocomplete="off">
+            (Catalog section)
+            <br>
+            - slate color
+
+        </div>
+
+    </div>
+
+
+    <!-- Q7 -->
+
+    <div class="question">
+
+        <div class="question-number">
+            Question 7
+        </div>
+
+        <div class="question-text">
+
+            Customer will
+            <input
+                type="text"
+                class="answer-input"
+                name="q7"
+                autocomplete="off">
+
+            (Delivery notes)
+
+        </div>
+
+    </div>
+
+
+    <!-- Q8 -->
+
+    <div class="question">
+
+        <div class="question-number">
+            Question 8
+        </div>
+
+        <div class="question-text">
+
+            Chair:
+            <br>
+
+            - Home Office (Catalog section)
+            <br>
+
+            -
+            <input
+                type="text"
+                class="answer-input"
+                name="q8"
+                autocomplete="off">
+            color
+            <br>
+
+            - our van (Delivery notes)
+
+        </div>
+
+    </div>
+
+
+    <!-- Q9 -->
+
+    <div class="question">
+
+        <div class="question-number">
+            Question 9
+        </div>
+
+        <div class="question-text">
+
+            Filling cabinet:
+            two drawers with
+            <input
+                type="text"
+                class="answer-input"
+                name="q9"
+                autocomplete="off">
+
+            (Catalog section)
+
+            <br>
+
+            - grey color
+
+        </div>
+
+    </div>
+
+
+    <!-- Q10 -->
+
+    <div class="question">
+
+        <div class="question-number">
+            Question 10
+        </div>
+
+        <div class="question-text">
+
+            Direct from London no later than
+            <input
+                type="text"
+                class="answer-input"
+                name="q10"
+                autocomplete="off">
+
+            (Delivery notes)
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     PART 2
+===================================================== -->
+
+<div class="section">
+
+    <h2>PART 2</h2>
+
+
+    <!-- QUESTIONS 11-12 -->
+
+    <div class="instructions">
+
+        <strong>Questions 11–12</strong>
+
+        <p>
+            Choose <strong>TWO</strong> letters, A–E.
+        </p>
+
+        <p>
+            Which TWO things make the museum unusual?
+        </p>
+
+    </div>
+
+
+    <div class="question">
+
+        <div class="question-number">
+            Questions 11–12
+        </div>
+
+        <div class="question-text">
+
+            Select TWO answers.
+
+        </div>
+
+
+        <label class="option">
+
+            <input
+                type="checkbox"
+                name="q11_12"
+                value="A">
+
+            A. The guidance
+
+        </label>
+
+
+        <label class="option">
+
+            <input
+                type="checkbox"
+                name="q11_12"
+                value="B">
+
+            B. The events
+
+        </label>
+
+
+        <label class="option">
+
+            <input
+                type="checkbox"
+                name="q11_12"
+                value="C">
+
+            C. The animals
+
+        </label>
+
+
+        <label class="option">
+
+            <input
+                type="checkbox"
+                name="q11_12"
+                value="D">
+
+            D. The buildings
+
+        </label>
+
+
+        <label class="option">
+
+            <input
+                type="checkbox"
+                name="q11_12"
+                value="E">
+
+            E. The objects
+
+        </label>
+
+    </div>
+
+
+
+    <!-- QUESTIONS 13-14 -->
+
+    <div class="instructions">
+
+        <strong>Questions 13–14</strong>
+
+        <p>
+            Choose <strong>TWO</strong> letters, A–E.
+        </p>
+
+        <p>
+            Which TWO things can visitors do at the museum?
+        </p>
+
+    </div>
+
+
+    <div class="question">
+
+        <div class="question-number">
+            Questions 13–14
+        </div>
+
+        <div class="question-text">
+
+            Select TWO answers.
+
+        </div>
+
+
+        <label class="option">
+
+            <input
+                type="checkbox"
+                name="q13_14"
+                value="A">
+
+            A. Buy home-made bread
+
+        </label>
+
+
+        <label class="option">
+
+            <input
+                type="checkbox"
+                name="q13_14"
+                value="B">
+
+            B. Ride a horse
+
+        </label>
+
+
+        <label class="option">
+
+            <input
+                type="checkbox"
+                name="q13_14"
+                value="C">
+
+            C. Ride on a tram
+
+        </label>
+
+
+        <label class="option">
+
+            <input
+                type="checkbox"
+                name="q13_14"
+                value="D">
+
+            D. Buy copies of original posters
+
+        </label>
+
+
+        <label class="option">
+
+            <input
+                type="checkbox"
+                name="q13_14"
+                value="E">
+
+            E. Go down a coal mine
+
+        </label>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         SUBMIT
+    ===================================================== -->
+
+    <div class="submit-container">
+
+        <button
+            id="submitButton"
+            onclick="submitTest(false)">
+
+            Submit Test
+
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     RESULT
+===================================================== -->
+
+<div id="result">
+
+    <div class="score-box">
+
+        <h2>Listening Test Result</h2>
+
+        <p id="scoreText"></p>
+
+        <p id="submissionText"></p>
+
+    </div>
+
+
+    <h2>Answer Review</h2>
+
+    <div id="review"></div>
+
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   ANSWER KEY
+
+   IMPORTANT:
+   You have not provided the answers for questions 1-14
+   in your message.
+
+   Replace the placeholder answers below with your REAL
+   answer key.
+
+========================================================= */
+
+const answers = {
+
+    q1: "ANSWER1",
+
+    q2: "ANSWER2",
+
+    q3: "ANSWER3",
+
+    q4: "ANSWER4",
+
+    q5: "ANSWER5",
+
+    q6: "ANSWER6",
+
+    q7: "ANSWER7",
+
+    q8: "ANSWER8",
+
+    q9: "ANSWER9",
+
+    q10: "ANSWER10",
+
+    q11_12: ["A", "B"],
+
+    q13_14: ["C", "D"]
+
+};
+
+
+/* =========================================================
+   QUESTION TEXT
+========================================================= */
+
+const questionTexts = {
+
+    q1: "Customer name: Greening",
+
+    q2: "Address: ___, York Terrace",
+
+    q3: "Delivery address: No. 5, York ___",
+
+    q4: "Payment method: ___ in advance",
+
+    q5: "Reason for discount: address within the ___",
+
+    q6: "Desk lamp — Catalog section",
+
+    q7: "Customer will ___",
+
+    q8: "Chair — ___ color",
+
+    q9: "Filing cabinet — Catalog section",
+
+    q10: "Direct from London no later than ___",
+
+    q11_12: "Which TWO things make the museum unusual?",
+
+    q13_14: "Which TWO things can visitors do at the museum?"
+
+};
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+let timeLeft = 15 * 60;
+
+let timerInterval = null;
+
+let submitted = false;
+
+let testStarted = false;
+
+const audio = document.getElementById("examAudio");
+
+const timerElement = document.getElementById("timer");
+
+
+/* =========================================================
+   START TEST
+========================================================= */
+
+function startTest() {
+
+    if (testStarted) {
+        return;
+    }
+
+    testStarted = true;
+
+    document.getElementById("startScreen").style.display = "none";
+
+    document.getElementById("examContainer").style.display = "block";
+
+
+    /*
+       Start audio.
+
+       The browser may require a user interaction before
+       allowing audio playback. This function is triggered
+       directly by the Start Test button, so playback should
+       be allowed.
+    */
+
+    audio.currentTime = 0;
+
+    audio.play().catch(function(error) {
+
+        alert(
+            "The audio could not start. Please check that the audio file exists."
+        );
+
+        console.log(error);
+
+    });
+
+
+    /*
+       Start 15-minute timer.
+    */
+
+    timerInterval = setInterval(updateTimer, 1000);
+
+}
+
+
+/* =========================================================
+   TIMER
+========================================================= */
+
+function updateTimer() {
+
+    if (timeLeft <= 0) {
+
+        clearInterval(timerInterval);
+
+        timerElement.textContent = "00:00";
+
+        submitTest(true);
+
+        return;
+    }
+
+
+    const minutes = Math.floor(timeLeft / 60);
+
+    const seconds = timeLeft % 60;
+
+
+    timerElement.textContent =
+        String(minutes).padStart(2, "0") +
+        ":" +
+        String(seconds).padStart(2, "0");
+
+
+    /*
+       Last 5 minutes.
+    */
+
+    if (timeLeft <= 300) {
+
+        timerElement.style.background = "#991b1b";
+
+    }
+
+
+    timeLeft--;
+
+}
+
+
+/* =========================================================
+   PREVENT AUDIO CONTROLS
+========================================================= */
+
+/*
+   The audio element intentionally has NO controls attribute.
+
+   Students therefore cannot see:
+
+   - Play
+   - Pause
+   - Seek bar
+   - Volume
+   - Speed
+   - Fullscreen
+
+   The following protections also prevent common keyboard
+   shortcuts and context-menu interaction.
+*/
+
+
+audio.addEventListener("pause", function() {
+
+    if (testStarted && !submitted) {
+
+        /*
+           If something attempts to pause the audio,
+           immediately continue playback.
+        */
+
+        audio.play().catch(function(){});
+
+    }
+
+});
+
+
+audio.addEventListener("ended", function() {
+
+    /*
+       Audio finishing does NOT automatically submit the test.
+       The 15-minute timer controls submission.
+
+       If you want the test to submit immediately when the
+       audio ends, uncomment the line below:
+
+       submitTest(true);
+    */
+
+});
+
+
+/* =========================================================
+   PREVENT SEEKING / REWINDING
+========================================================= */
+
+let lastAudioTime = 0;
+
+
+audio.addEventListener("timeupdate", function() {
+
+    if (submitted) {
+        return;
+    }
+
+    /*
+       Keep track of the latest position.
+    */
+
+    if (audio.currentTime >= lastAudioTime) {
+
+        lastAudioTime = audio.currentTime;
+
+    }
+
+});
+
+
+audio.addEventListener("seeking", function() {
+
+    if (testStarted && !submitted) {
+
+        /*
+           If the student attempts to seek backwards or forwards,
+           return to the latest legitimate position.
+        */
+
+        if (audio.currentTime !== lastAudioTime) {
+
+            audio.currentTime = lastAudioTime;
+
+        }
+
+    }
+
+});
+
+
+/* =========================================================
+   DISABLE RIGHT CLICK
+========================================================= */
+
+document.addEventListener("contextmenu", function(event) {
+
+    if (testStarted && !submitted) {
+
+        event.preventDefault();
+
+    }
+
+});
+
+
+/* =========================================================
+   DISABLE COMMON AUDIO KEYBOARD SHORTCUTS
+========================================================= */
+
+document.addEventListener("keydown", function(event) {
+
+    if (!testStarted || submitted) {
+        return;
+    }
+
+
+    /*
+       Space = play/pause
+    */
+
+    if (event.code === "Space") {
+
+        event.preventDefault();
+
+    }
+
+
+    /*
+       Arrow keys can sometimes seek media.
+    */
+
+    if (
+        event.code === "ArrowLeft" ||
+        event.code === "ArrowRight"
+    ) {
+
+        event.preventDefault();
+
+    }
+
+});
+
+
+/* =========================================================
+   NORMALIZE TEXT ANSWERS
+========================================================= */
+
+function normalizeAnswer(answer) {
+
+    return answer
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, " ");
+
+}
+
+
+/* =========================================================
+   CHECK TEXT ANSWER
+========================================================= */
+
+function checkTextAnswer(userAnswer, correctAnswer) {
+
+    return normalizeAnswer(userAnswer) ===
+           normalizeAnswer(correctAnswer);
+
+}
+
+
+/* =========================================================
+   CHECK MULTIPLE CHOICE
+========================================================= */
+
+function checkMultipleChoice(name, correctAnswers) {
+
+    const selected =
