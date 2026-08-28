@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IELTS Listening Test</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: #1e3a8a;
+            color: white;
+
+            padding: 15px 25px;
+
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .header-inner {
+            max-width: 1100px;
+            margin: auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 21px;
+        }
+
+        #timer {
+            background: #dc2626;
+            color: white;
+
+            padding: 8px 18px;
+
+            border-radius: 7px;
+
+            font-size: 21px;
+            font-weight: bold;
+
+            min-width: 90px;
+            text-align: center;
+        }
+
+        /* ================= START SCREEN ================= */
+
+        .start-screen {
+            max-width: 700px;
+            margin: 80px auto;
+            padding: 40px;
+
+            background: white;
+
+            border-radius: 12px;
+
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+
+            text-align: center;
+        }
+
+        .start-screen h2 {
+            color: #1e3a8a;
+        }
+
+        .start-screen p {
+            font-size: 17px;
+        }
+
+        #startButton {
+            margin-top: 20px;
+
+            background: #16a34a;
+            color: white;
+
+            border: none;
+
+            padding: 15px 35px;
+
+            font-size: 18px;
+            font-weight: bold;
+
+            border-radius: 7px;
+
+            cursor: pointer;
+        }
+
+        #startButton:hover {
+            background: #15803d;
+        }
+
+        /* ================= TEST ================= */
+
+        #examContainer {
+            display: none;
+        }
+
+        .test-container {
+            max-width: 1100px;
+            margin: 30px auto;
+
+            padding: 0 20px;
+        }
+
+        .instructions {
+            background: white;
+
+            padding: 20px;
+
+            border-radius: 9px;
+
+            margin-bottom: 25px;
+
+            border-left: 5px solid #2563eb;
+        }
+
+        .section-title {
+            color: #1e3a8a;
+
+            border-bottom: 2px solid #dbeafe;
+
+            padding-bottom: 10px;
+        }
+
+        /* ================= AUDIO ================= */
+
+        .audio-box {
+            background: #0f172a;
+            color: white;
+
+            padding: 20px;
+
+            border-radius: 9px;
+
+            margin-bottom: 25px;
+
+            text-align: center;
+        }
+
+        .audio-box p {
+            margin-top: 0;
+            font-weight: bold;
+        }
+
+        /* ================= QUESTIONS ================= */
+
+        .question {
+            background: white;
+
+            padding: 20px;
+
+            margin-bottom: 18px;
+
+            border-radius: 9px;
+
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        }
+
+        .question-number {
+            color: #1e3a8a;
+
+            font-weight: bold;
+
+            margin-bottom: 8px;
+        }
+
+        .question-text {
+            font-weight: bold;
+
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+
+            padding: 9px 12px;
+
+            margin: 5px 0;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+        }
+
+        label:hover {
+            background: #eff6ff;
+        }
+
+        input[type="radio"] {
+            margin-right: 8px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 8px;
+        }
+
+        .text-answer {
+            width: 100%;
+
+            max-width: 350px;
+
+            padding: 10px;
+
+            border: 1px solid #94a3b8;
+
+            border-radius: 6px;
+
+            font-size: 16px;
+        }
+
+        /* ================= SUBMIT ================= */
+
+        .submit-area {
+            text-align: center;
+
+            margin: 40px 0;
+        }
+
+        #submitButton {
+            background: #16a34a;
+
+            color: white;
+
+            border: none;
+
+            padding: 15px 40px;
+
+            border-radius: 7px;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        #submitButton:hover {
+            background: #15803d;
+        }
+
+        /* ================= RESULT ================= */
+
+        #result {
+            display: none;
+
+            max-width: 1100px;
+
+            margin: 30px auto;
+
+            padding: 25px 20px;
+        }
+
+        .result-box {
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 10px;
+
+            text-align: center;
+
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+
+            margin-bottom: 25px;
+        }
+
+        .result-box h2 {
+            color: #1e3a8a;
+        }
+
+        #score {
+            font-size: 32px;
+
+            font-weight: bold;
+
+            color: #16a34a;
+        }
+
+        .review-item {
+            background: white;
+
+            padding: 18px;
+
+            margin-bottom: 12px;
+
+            border-radius: 8px;
+
+            border-left: 5px solid;
+        }
+
+        .review-correct {
+            border-color: #16a34a;
+
+            background: #f0fdf4;
+        }
+
+        .review-wrong {
+            border-color: #dc2626;
+
+            background: #fef2f2;
+        }
+
+        .review-unanswered {
+            border-color: #d97706;
+
+            background: #fffbeb;
+        }
+
+        .correct-answer {
+            color: #15803d;
+
+            font-weight: bold;
+        }
+
+        .your-answer {
+            font-weight: bold;
+        }
+
+        @media(max-width:700px) {
+
+            .header-inner {
+                flex-direction: column;
+            }
+
+            header h1 {
+                text-align: center;
+            }
+
+            .start-screen {
+                margin: 30px 15px;
+                padding: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <div class="header-inner">
+
+        <h1>IELTS Listening Test</h1>
+
+        <div id="timer">
+            15:00
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     START SCREEN
+===================================================== -->
+
+<div id="startScreen" class="start-screen">
+
+    <h2>IELTS Listening Test</h2>
+
+    <p>
+        You have <strong>15 minutes</strong> to complete this test.
+    </p>
+
+    <p>
+        Please make sure your volume is working before starting.
+    </p>
+
+    <p>
+        Once you start the test, the timer will begin and the listening
+        audio will start.
+    </p>
+
+    <button id="startButton" onclick="startTest()">
+        Start Test
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     TEST CONTAINER
+===================================================== -->
+
+<div id="examContainer">
+
+    <div class="test-container">
+
+
+        <!-- AUDIO -->
+
+        <div class="audio-box">
+
+            <p>🎧 Listening Audio</p>
+
+            <audio
+                id="examAudio"
+                src="listening.mp3"
+                preload="auto">
+            </audio>
+
+            <p>
+                The listening audio will begin when you start the test.
+            </p>
+
+        </div>
+
+
+        <!-- INSTRUCTIONS -->
+
+        <div class="instructions">
+
+            <strong>Instructions</strong>
+
+            <p>
+                Answer all questions. You have 15 minutes.
+            </p>
+
+            <p>
+                Questions 1–10 require a written answer.
+            </p>
+
+            <p>
+                Questions 11–12 require you to select TWO answers.
+            </p>
+
+            <p>
+                Questions 13–14 require you to select TWO answers.
+            </p>
+
+        </div>
+
+
+        <form id="quiz">
+
+
+            <h2 class="section-title">
+                Questions 1–10
+            </h2>
+
+
+            <!-- Q1 -->
+
+            <div class="question">
+
+                <div class="question-number">
+                    Question 1
+                </div>
+
+                <div class="question-text">
+                    Customer name: Greening ______
+                </div>
+
+                <input
+                    class="text-answer"
+                    type="text"
+                    name="q1"
+                    autocomplete="off">
+
+            </div>
+
+
+            <!-- Q2 -->
+
+            <div class="question">
+
+                <div class="question-number">
+                    Question 2
+                </div>
+
+                <div class="question-text">
+                    Address: ______, York Terrace
+                </div>
+
+                <input
+                    class="text-answer"
+                    type="text"
+                    name="q2"
+                    autocomplete="off">
+
+            </div>
+
+
+            <!-- Q3 -->
+
+            <div class="question">
+
+                <div class="question-number">
+                    Question 3
+                </div>
+
+                <div class="question-text">
+                    Delivery address: No. 5, York ______
+                </div>
+
+                <input
+                    class="text-answer"
+                    type="text"
+                    name="q3"
+                    autocomplete="off">
+
+            </div>
+
+
+            <!-- Q4 -->
+
+            <div class="question">
+
+                <div class="question-number">
+                    Question 4
+                </div>
+
+                <div class="question-text">
+                    Payment method: ______ in advance
+                </div>
+
+                <input
+                    class="text-answer"
+                    type="text"
+                    name="q4"
+                    autocomplete="off">
+
+            </div>
+
+
+            <!-- Q5 -->
+
+            <div class="question">
+
+                <div class="question-number">
+                    Question 5
+                </div>
+
+                <div class="question-text">
+                    Reason for discount: address within the ______
+                </div>
+
+                <input
+                    class="text-answer"
+                    type="text"
+                    name="q5"
+                    autocomplete="off">
+
+            </div>
+
+
+            <!-- Q6 -->
+
+            <div class="question">
+
+                <div class="question-number">
+                    Question 6
+                </div>
+
+                <div class="question-text">
+                    Desk lamp — Catalog section: ______
+                </div>
+
+                <input
+                    class="text-answer"
+                    type="text"
+                    name="q6"
+                    autocomplete="off">
+
+            </div>
+
+
+            <!-- Q7 -->
+
+            <div class="question">
+
+                <div class="question-number">
+                    Question 7
+                </div>
+
+                <div class="question-text">
+                    Customer will ______
+                </div>
+
+                <input
+                    class="text-answer"
+                    type="text"
+                    name="q7"
+                    autocomplete="off">
+
+            </div>
+
+
+            <!-- Q8 -->
+
+            <div class="question">
+
+                <div class="question-number">
+                    Question 8
+                </div>
+
+                <div class="question-text">
+                    Chair — ______ color
+                </div>
+
+                <input
+                    class="text-answer"
+                    type="text"
+                    name="q8"
+                    autocomplete="off">
+
+            </div>
+
+
+            <!-- Q9 -->
+
+            <div class="question">
+
+                <div class="question-number">
+                    Question 9
+                </div>
+
+                <div class="question-text">
+                    Filing cabinet — Catalog section: ______
+                </div>
+
+                <input
+                    class="text-answer"
+                    type="text"
+                    name="q9"
+                    autocomplete="off">
+
+            </div>
+
+
+            <!-- Q10 -->
+
+            <div class="question">
+
+                <div class="question-number">
+                    Question 10
+                </div>
+
+                <div class="question-text">
+                    Direct from London no later than ______
+                </div>
+
+                <input
+                    class="text-answer"
+                    type="text"
+                    name="q10"
+                    autocomplete="off">
+
+            </div>
+
+
+            <!-- =================================================
+                 QUESTIONS 11–12
+            ================================================== -->
+
+            <h2 class="section-title">
+                Questions 11–12
+            </h2>
+
+            <div class="instructions">
+
+                <p>
+                    Which TWO things make the museum unusual?
+                </p>
+
+                <strong>
+                    Choose TWO answers.
+                </strong>
+
+            </div>
+
+
+            <div class="question">
+
+                <label>
+                    <input
+                        type="checkbox"
+                        name="q11_12"
+                        value="A">
+
+                    A
+                </label>
+
+                <label>
+                    <input
+                        type="checkbox"
+                        name="q11_12"
+                        value="B">
+
+                    B
+                </label>
+
+                <label>
+                    <input
+                        type="checkbox"
+                        name="q11_12"
+                        value="C">
+
+                    C
+                </label>
+
+                <label>
+                    <input
+                        type="checkbox"
+                        name="q11_12"
+                        value="D">
+
+                    D
+                </label>
+
+                <label>
+                    <input
+                        type="checkbox"
+                        name="q11_12"
+                        value="E">
+
+                    E
+                </label>
+
+            </div>
+
+
+            <!-- =================================================
+                 QUESTIONS 13–14
+            ================================================== -->
+
+            <h2 class="section-title">
+                Questions 13–14
+            </h2>
+
+            <div class="instructions">
+
+                <p>
+                    Which TWO things can visitors do at the museum?
+                </p>
+
+                <strong>
+                    Choose TWO answers.
+                </strong>
+
+            </div>
+
+
+            <div class="question">
+
+                <label>
+                    <input
+                        type="checkbox"
+                        name="q13_14"
+                        value="A">
+
+                    A
+                </label>
+
+                <label>
+                    <input
+                        type="checkbox"
+                        name="q13_14"
+                        value="B">
+
+                    B
+                </label>
+
+                <label>
+                    <input
+                        type="checkbox"
+                        name="q13_14"
+                        value="C">
+
+                    C
+                </label>
+
+                <label>
+                    <input
+                        type="checkbox"
+                        name="q13_14"
+                        value="D">
+
+                    D
+                </label>
+
+                <label>
+                    <input
+                        type="checkbox"
+                        name="q13_14"
+                        value="E">
+
+                    E
+                </label>
+
+            </div>
+
+
+            <!-- SUBMIT -->
+
+            <div class="submit-area">
+
+                <button
+                    type="button"
+                    id="submitButton"
+                    onclick="submitTest(false)">
+
+                    Submit Test
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     RESULT
+===================================================== -->
+
+<div id="result">
+
+    <div class="result-box">
+
+        <h2>Test Completed</h2>
+
+        <div id="score">
+            0 / 14
+        </div>
+
+        <p id="submissionText"></p>
+
+    </div>
+
+
+    <h2>Answer Review</h2>
+
+    <div id="review"></div>
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =====================================================
+   ANSWERS
+===================================================== */
+
+const answers = {
+
+    q1: ["oskar"],
+
+    q2: ["52", "52c"],
+
+    q3: ["avenue"],
+
+    q4: ["cash"],
+
+    q5: ["city"],
+
+    q6: ["living"],
+
+    q7: ["collect"],
+
+    q8: ["green"],
+
+    q9: ["lock"],
+
+    q10: [
+        "3rd october",
+        "3 october"
+    ],
+
+    q11: "A",
+
+    q12: "D",
+
+    q13: "C",
+
+    q14: "E"
+
+};
+
+
+/* =====================================================
+   QUESTION TEXT
+===================================================== */
+
+const questionTexts = {
+
+    q1:
+        "Customer name: Greening ______",
+
+    q2:
+        "Address: ______, York Terrace",
+
+    q3:
+        "Delivery address: No. 5, York ______",
+
+    q4:
+        "Payment method: ______ in advance",
+
+    q5:
+        "Reason for discount: address within the ______",
+
+    q6:
+        "Desk lamp — Catalog section: ______",
+
+    q7:
+        "Customer will ______",
+
+    q8:
+        "Chair — ______ color",
+
+    q9:
+        "Filing cabinet — Catalog section: ______",
+
+    q10:
+        "Direct from London no later than ______",
+
+    q11:
+        "Which TWO things make the museum unusual?",
+
+    q12:
+        "Which TWO things make the museum unusual?",
+
+    q13:
+        "Which TWO things can visitors do at the museum?",
+
+    q14:
+        "Which TWO things can visitors do at the museum?"
+
+};
+
+
+/* =====================================================
+   TIMER
+===================================================== */
+
+let timeLeft = 15 * 60;
+
+let timerInterval = null;
+
+let testStarted = false;
+
+let submitted = false;
+
+
+const timerElement =
+    document.getElementById("timer");
+
+
+/* =====================================================
+   START TEST
+===================================================== */
+
+function startTest() {
+
+    if (testStarted) {
+
+        return;
+
+    }
+
+
+    testStarted = true;
+
+
+    document.getElementById("startScreen")
+        .style.display = "none";
+
+
+    document.getElementById("examContainer")
+        .style.display = "block";
+
+
+    /*
+       Start audio.
+    */
+
+    const audio =
+        document.getElementById("examAudio");
+
+
+    audio.currentTime = 0;
+
+
+    audio.play().catch(function(error) {
+
+        console.log("Audio could not start:", error);
+
+    });
+
+
+    /*
+       Start timer.
+    */
+
+    updateTimer();
+
+
+    timerInterval =
+        setInterval(updateTimer, 1000);
+
+}
+
+
+/* =====================================================
+   UPDATE TIMER
+===================================================== */
+
+function updateTimer() {
+
+    if (timeLeft <= 0) {
+
+        clearInterval(timerInterval);
+
+        timerElement.textContent = "00:00";
+
+        submitTest(true);
+
+        return;
+
+    }
+
+
+    const minutes =
+        Math.floor(timeLeft / 60);
+
+
+    const seconds =
+        timeLeft % 60;
+
+
+    timerElement.textContent =
+        String(minutes).padStart(2, "0") +
+        ":" +
+        String(seconds).padStart(2, "0");
+
+
+    /*
+       Redder timer during final 5 minutes.
+    */
+
+    if (timeLeft <= 300) {
+
+        timerElement.style.background =
+            "#991b1b";
+
+    }
+
+
+    timeLeft--;
+
+}
+
+
+/* =====================================================
+   NORMALIZE ANSWER
+===================================================== */
+
+function normalizeAnswer(value) {
+
+    return value
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, " ");
+
+}
+
+
+/* =====================================================
+   TEXT ANSWER CHECK
+===================================================== */
+
+function checkTextAnswer(
+    userAnswer,
+    acceptedAnswers
+) {
+
+    const normalizedUser =
+        normalizeAnswer(userAnswer);
+
+
+    return acceptedAnswers.some(function(answer) {
+
+        return normalizedUser ===
+               normalizeAnswer(answer);
+
+    });
+
+}
+
+
+/* =====================================================
+   MULTIPLE CHOICE CHECK
+===================================================== */
+
+function getSelectedAnswers(name) {
+
+    return Array.from(
+        document.querySelectorAll(
+            `input[name="${name}"]:checked`
+        )
+    ).map(function(input) {
+
+        return input.value;
+
+    });
+
+}
+
+
+/* =====================================================
+   SUBMIT TEST
+===================================================== */
+
+function submitTest(autoSubmit) {
+
+    if (submitted) {
+
+        return;
+
+    }
+
+
+    submitted = true;
+
+
+    clearInterval(timerInterval);
+
+
+    let score = 0;
+
+
+    let reviewHTML = "";
+
+
+    /* =================================================
+       QUESTIONS 1–10
+    ================================================= */
+
+    for (let i = 1; i <= 10; i++) {
+
+        const input =
+            document.querySelector(
+                `input[name="q${i}"]`
+            );
+
+
+        const userAnswer =
+            input ? input.value.trim() : "";
+
+
+        const correctAnswers =
+            answers["q" + i];
+
+
+        const answered =
+            userAnswer !== "";
+
+
+        const correct =
+            answered &&
+            checkTextAnswer(
+                userAnswer,
+                correctAnswers
+            );
+
+
+        if (correct) {
+
+            score++;
+
+        }
+
+
+        let className =
+            "review-wrong";
+
+
+        if (!answered) {
+
+            className =
+                "review-unanswered";
+
+        }
+        else if (correct) {
+
+            className =
+                "review-correct";
+
+        }
+
+
+        reviewHTML += `
+
+            <div class="review-item ${className}">
+
+                <strong>
+                    Question ${i}
+                </strong>
+
+                <p>
+                    ${questionTexts["q" + i]}
+                </p>
+
+                <p>
+                    Your answer:
+                    <span class="your-answer">
+                        ${
+                            answered
+                            ? escapeHTML(userAnswer)
+                            : "Not answered"
+                        }
+                    </span>
+                </p>
+
+                <p>
+                    Correct answer:
+                    <span class="correct-answer">
+                        ${correctAnswers.join(" / ")}
+                    </span>
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* =================================================
+       QUESTIONS 11–12
+    ================================================= */
+
+    const selected11_12 =
+        getSelectedAnswers("q11_12");
+
+
+    const correct11_12 =
+        ["A", "D"];
+
+
+    /*
+       Q11 is worth 1 point.
+    */
+
+    if (
+        selected11_12.includes("A")
+    ) {
+
+        score++;
+
+    }
+
+
+    /*
+       Q12 is worth 1 point.
+    */
+
+    if (
+        selected11_12.includes("D")
+    ) {
+
+        score++;
+
+    }
+
+
+    const selected11Text =
+        selected11_12.length
+        ? selected11_12.join(", ")
+        : "Not answered";
+
+
+    reviewHTML += `
+
+        <div class="review-item
+            ${
+                selected11_12.includes("A")
+                ? "review-correct"
+                : "review-wrong"
+            }">
+
+            <strong>
+                Question 11
+            </strong>
+
+            <p>
+                ${questionTexts.q11}
+            </p>
+
+            <p>
+                Your answer:
+                <span class="your-answer">
+                    ${selected11Text}
+                </span>
+            </p>
+
+            <p>
+                Correct answer:
+                <span class="correct-answer">
+                    A
+                </span>
+            </p>
+
+        </div>
+
+    `;
+
+
+    reviewHTML += `
+
+        <div class="review-item
+            ${
+                selected11_12.includes("D")
+                ? "review-correct"
+                : "review-wrong"
+            }">
+
+            <strong>
+                Question 12
+            </strong>
+
+            <p>
+                ${questionTexts.q12}
+            </p>
+
+            <p>
+                Your answer:
+                <span class="your-answer">
+                    ${selected11Text}
+                </span>
+            </p>
+
+            <p>
+                Correct answer:
+                <span class="correct-answer">
+                    D
+                </span>
+            </p>
+
+        </div>
+
+    `;
+
+
+    /* =================================================
+       QUESTIONS 13–14
+    ================================================= */
+
+    const selected13_14 =
+        getSelectedAnswers("q13_14");
+
+
+    /*
+       Q13 = C
+    */
+
+    if (
+        selected13_14.includes("C")
+    ) {
+
+        score++;
+
+    }
+
+
+    /*
+       Q14 = E
+    */
+
+    if (
+        selected13_14.includes("E")
+    ) {
+
+        score++;
+
+    }
+
+
+    const selected13Text =
+        selected13_14.length
+        ? selected13_14.join(", ")
+        : "Not answered";
+
+
+    reviewHTML += `
+
+        <div class="review-item
+            ${
+                selected13_14.includes("C")
+                ? "review-correct"
+                : "review-wrong"
+            }">
+
+            <strong>
+                Question 13
+            </strong>
+
+            <p>
+                ${questionTexts.q13}
+            </p>
+
+            <p>
+                Your answer:
+                <span class="your-answer">
+                    ${selected13Text}
+                </span>
+            </p>
+
+            <p>
+                Correct answer:
+                <span class="correct-answer">
+                    C
+                </span>
+            </p>
+
+        </div>
+
+    `;
+
+
+    reviewHTML += `
+
+        <div class="review-item
+            ${
+                selected13_14.includes("E")
+                ? "review-correct"
+                : "review-wrong"
+            }">
+
+            <strong>
+                Question 14
+            </strong>
+
+            <p>
+                ${questionTexts.q14}
+            </p>
+
+            <p>
+                Your answer:
+                <span class="your-answer">
+                    ${selected13Text}
+                </span>
+            </p>
+
+            <p>
+                Correct answer:
+                <span class="correct-answer">
+                    E
+                </span>
+            </p>
+
+        </div>
+
+    `;
+
+
+    /* =================================================
+       SHOW RESULT
+    ================================================= */
+
+    document.getElementById("score")
+        .textContent =
+        `${score} / 14`;
+
+
+    if (autoSubmit) {
+
+        document.getElementById("submissionText")
+            .textContent =
+            "⏰ Time is up. Your test was submitted automatically.";
+
+    }
+    else {
+
+        document.getElementById("submissionText")
+            .textContent =
+            "Your test has been submitted.";
+
+    }
+
+
+    document.getElementById("review")
+        .innerHTML =
+        reviewHTML;
+
+
+    document.getElementById("result")
+        .style.display =
+        "block";
+
+
+    /*
+       Stop audio.
+    */
+
+    const audio =
+        document.getElementById("examAudio");
+
+
+    audio.pause();
+
+
+    /*
+       Disable inputs.
+    */
+
+    document.querySelectorAll("input")
+        .forEach(function(input) {
+
+            input.disabled = true;
+
+        });
+
+
+    /*
+       Disable submit button.
+    */
+
+    const submitButton =
+        document.getElementById("submitButton");
+
+
+    submitButton.disabled = true;
+
+
+    submitButton.style.background =
+        "#64748b";
+
+
+    /*
+       Scroll to results.
+    */
+
+    document.getElementById("result")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+</script>
+
+</body>
+
+</html>
